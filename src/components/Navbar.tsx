@@ -86,7 +86,7 @@ const Navbar = () => {
                             aria-label="Open navigation"
                             onClick={() => setMenuOpen(true)}
                             whileTap={{ scale: 0.9 }}
-                            className="lg:hidden flex flex-col items-end gap-1.5 p-2 group"
+                            className="lg:hidden flex flex-col items-end gap-1.5 p-2 mr-2 sm:mr-4 group transition-all duration-300"
                         >
                             <span className="w-8 h-[2px] bg-white rounded-full transition-all group-hover:bg-[#ff4b2b]" />
                             <span className="w-5 h-[2px] bg-white rounded-full transition-all group-hover:w-8 group-hover:bg-[#ff4b2b]" />
@@ -180,4 +180,4 @@ export default Navbar;
 
 
 
-  
+

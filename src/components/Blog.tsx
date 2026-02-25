@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { ArrowUpRight, Clock, TrendingUp } from 'lucide-react';
 
@@ -66,7 +66,7 @@ const blogPosts: BlogPost[] = [
 ];
 
 // ── Tilt Card for Featured Post ──
-const FeaturedCard = ({ post, index = 0 }: { post: BlogPost; index?: number }) => {
+const FeaturedCard = ({ post, index = 0, isLight }: { post: BlogPost; index?: number; isLight: boolean }) => {
     const isMobile = useIsMobile();
     const ref = useRef<HTMLDivElement>(null);
     const [hovered, setHovered] = useState(false);
@@ -137,7 +137,7 @@ const FeaturedCard = ({ post, index = 0 }: { post: BlogPost; index?: number }) =
 
                     {/* Meta row */}
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4 text-white/40 text-xs font-medium">
+                        <div className={`flex items-center gap-4 ${isLight ? 'text-black/40' : 'text-white/40'} text-xs font-medium`}>
                             <span className="flex items-center gap-1.5">
                                 <Clock className="w-3.5 h-3.5" />
                                 {post.readTime}
@@ -146,7 +146,7 @@ const FeaturedCard = ({ post, index = 0 }: { post: BlogPost; index?: number }) =
                         </div>
                         <motion.div
                             animate={{ rotate: hovered ? 45 : 0 }}
-                            className="w-10 h-10 rounded-full border border-white/20 bg-white/5 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-[#ff4b2b] group-hover:border-[#ff4b2b] transition-colors duration-300"
+                            className={`w-10 h-10 rounded-full border ${isLight ? 'border-black/10 bg-black/5' : 'border-white/20 bg-white/5'} backdrop-blur-md flex items-center justify-center ${isLight ? 'text-black' : 'text-white'} group-hover:bg-[#ff4b2b] group-hover:border-[#ff4b2b] group-hover:text-white transition-colors duration-300`}
                         >
                             <ArrowUpRight className="w-4 h-4" />
                         </motion.div>
@@ -158,7 +158,7 @@ const FeaturedCard = ({ post, index = 0 }: { post: BlogPost; index?: number }) =
 };
 
 // ── Compact Blog Card ──
-const BlogCard = ({ post, index }: { post: BlogPost; index: number }) => {
+const BlogCard = ({ post, index, isLight }: { post: BlogPost; index: number; isLight: boolean }) => {
     const isMobile = useIsMobile();
     const [hovered, setHovered] = useState(false);
     // Alternating: even index = slide from left, odd = slide from right
@@ -201,25 +201,25 @@ const BlogCard = ({ post, index }: { post: BlogPost; index: number }) => {
 
             {/* Text */}
             <div className="flex flex-col flex-1">
-                <div className="flex items-center gap-3 mb-3 text-white/30 text-[11px] font-medium">
+                <div className={`flex items-center gap-3 mb-3 ${isLight ? 'text-black/40' : 'text-white/30'} text-[11px] font-medium`}>
                     <span className="flex items-center gap-1">
                         <Clock className="w-3 h-3" />
                         {post.readTime}
                     </span>
-                    <span className="w-1 h-1 rounded-full bg-white/20" />
+                    <span className={`w-1 h-1 rounded-full ${isLight ? 'bg-black/10' : 'bg-white/20'}`} />
                     <span>{post.date}</span>
                 </div>
 
-                <h3 className="text-white text-lg font-bold leading-snug tracking-tight mb-2 group-hover:text-[#ff4b2b] transition-colors duration-300">
+                <h3 className={`${isLight ? 'text-black' : 'text-white'} text-lg font-bold leading-snug tracking-tight mb-2 group-hover:text-[#ff4b2b] transition-colors duration-300`}>
                     {post.title}
                 </h3>
-                <p className="text-white/35 text-sm leading-relaxed line-clamp-2">
+                <p className={`${isLight ? 'text-black/50' : 'text-white/35'} text-sm leading-relaxed line-clamp-2`}>
                     {post.excerpt}
                 </p>
             </div>
 
             {/* Bottom accent */}
-            <div className="mt-5 h-[1px] w-full bg-white/[0.04] relative overflow-hidden">
+            <div className={`mt-5 h-[1px] w-full ${isLight ? 'bg-black/5' : 'bg-white/[0.04]'} relative overflow-hidden`}>
                 <motion.div
                     animate={{ scaleX: hovered ? 1 : 0 }}
                     transition={{ duration: 0.5 }}
@@ -234,12 +234,23 @@ const BlogCard = ({ post, index }: { post: BlogPost; index: number }) => {
 const Blog = () => {
     const featured = blogPosts.find(p => p.featured)!;
     const rest = blogPosts.filter(p => !p.featured);
+    const sectionRef = useRef<HTMLElement>(null);
+    const isInView = useInView(sectionRef, { amount: 0.3, once: false });
 
     return (
-        <section className="bg-[#0a0a0a] py-24 lg:py-40 px-6 sm:px-10 lg:px-20 relative overflow-hidden">
+        <motion.section
+            ref={sectionRef}
+            animate={{ backgroundColor: isInView ? '#f8f8f8' : '#0a0a0a' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="py-24 lg:py-40 px-6 sm:px-10 lg:px-20 relative overflow-hidden"
+        >
             {/* Ambient Glow */}
-            <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-[#ff4b2b] opacity-[0.03] blur-[180px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-white opacity-[0.015] blur-[140px] rounded-full pointer-events-none" />
+            {!isInView && (
+                <>
+                    <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-[#ff4b2b] opacity-[0.03] blur-[180px] rounded-full pointer-events-none" />
+                    <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-white opacity-[0.015] blur-[140px] rounded-full pointer-events-none" />
+                </>
+            )}
 
             <div className="max-w-[1400px] mx-auto relative z-10">
 
@@ -259,7 +270,7 @@ const Blog = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.15 }}
-                            className="text-white text-[9vw] sm:text-[6vw] lg:text-[4vw] font-[900] tracking-tight leading-[0.9]"
+                            className={`${isInView ? 'text-black' : 'text-white'} text-[9vw] sm:text-[6vw] lg:text-[4vw] font-[900] tracking-tight leading-[0.9] transition-colors duration-500`}
                         >
                             Latest from <br className="sm:hidden" />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff4b2b] to-orange-400 italic">the blog</span>
@@ -272,7 +283,7 @@ const Blog = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 }}
                         href="#"
-                        className="group flex items-center gap-2 text-white/40 text-sm font-semibold hover:text-[#ff4b2b] transition-colors duration-300 shrink-0"
+                        className={`group flex items-center gap-2 ${isInView ? 'text-black/40' : 'text-white/40'} text-sm font-semibold hover:text-[#ff4b2b] transition-colors duration-300 shrink-0`}
                     >
                         View all articles
                         <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -283,11 +294,11 @@ const Blog = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
 
                     {/* Featured Post (spans 2 cols + 2 rows on md+) */}
-                    <FeaturedCard post={featured} />
+                    <FeaturedCard post={featured} isLight={isInView} />
 
                     {/* Remaining Posts */}
                     {rest.map((post, i) => (
-                        <BlogCard key={post.id} post={post} index={i} />
+                        <BlogCard key={post.id} post={post} index={i} isLight={isInView} />
                     ))}
                 </div>
 
@@ -297,16 +308,16 @@ const Blog = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="mt-20 lg:mt-28 p-8 sm:p-12 rounded-[2rem] border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl relative overflow-hidden"
+                    className={`mt-20 lg:mt-28 p-8 sm:p-12 rounded-[2rem] border ${isInView ? 'border-black/5 bg-black/5' : 'border-white/[0.06] bg-white/[0.02]'} backdrop-blur-xl relative overflow-hidden`}
                 >
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#ff4b2b]/5 to-transparent pointer-events-none" />
+                    <div className={`absolute inset-0 bg-gradient-to-r from-[#ff4b2b]/5 to-transparent pointer-events-none`} />
 
                     <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                         <div>
-                            <h3 className="text-white text-xl sm:text-2xl font-bold tracking-tight mb-2">
+                            <h3 className={`${isInView ? 'text-black' : 'text-white'} text-xl sm:text-2xl font-bold tracking-tight mb-2 transition-colors duration-500`}>
                                 Stay ahead of the curve
                             </h3>
-                            <p className="text-white/35 text-sm sm:text-base font-medium">
+                            <p className={`${isInView ? 'text-black/50' : 'text-white/35'} text-sm sm:text-base font-medium transition-colors duration-500`}>
                                 Get our weekly insights on design, strategy & growth — straight to your inbox.
                             </p>
                         </div>
@@ -315,7 +326,7 @@ const Blog = () => {
                             <input
                                 type="email"
                                 placeholder="your@email.com"
-                                className="flex-1 md:w-60 bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-[#ff4b2b]/50 transition-colors"
+                                className={`flex-1 md:w-60 ${isInView ? 'bg-black/5 border-black/10 text-black placeholder:text-black/25' : 'bg-white/[0.06] border-white/10 text-white placeholder:text-white/25'} border rounded-xl px-5 py-3.5 text-sm focus:outline-none focus:border-[#ff4b2b]/50 transition-all duration-500`}
                             />
                             <motion.button
                                 whileHover={{ scale: 1.04 }}
@@ -328,7 +339,7 @@ const Blog = () => {
                     </div>
                 </motion.div>
             </div>
-        </section>
+        </motion.section>
     );
 };
 
