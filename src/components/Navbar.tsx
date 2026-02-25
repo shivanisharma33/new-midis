@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { ArrowUpRight, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const navLinks = [
@@ -32,9 +32,9 @@ const Navbar = () => {
                 initial={{ y: -80, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className={`fixed top-0 left-0 right-0 z-50 px-6 lg:px-14 py-5 transition-all duration-500 ${scrolled
-                        ? 'bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.4)]'
-                        : 'bg-transparent'
+                className={`fixed top-0 left-0 right-0 z-50 px-6 lg:px-14 py-4 lg:py-6 transition-all duration-500 ${scrolled
+                    ? 'bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/[0.05] shadow-2xl'
+                    : 'bg-transparent'
                     }`}
             >
                 <div className="max-w-[1600px] mx-auto flex items-center justify-between">
@@ -44,7 +44,7 @@ const Navbar = () => {
                         <img
                             src="https://www.midis.in/image/midis%20final%20logo-01.png"
                             alt="Midis Digital Agency"
-                            className="h-9 lg:h-11 w-auto object-contain"
+                            className="h-7 lg:h-10 w-auto object-contain"
                         />
                     </motion.a>
 
@@ -85,10 +85,11 @@ const Navbar = () => {
                         <motion.button
                             aria-label="Open navigation"
                             onClick={() => setMenuOpen(true)}
-                            whileTap={{ scale: 0.88 }}
-                            className="lg:hidden w-10 h-10 rounded-full border border-white/10 bg-white/[0.06] backdrop-blur-md flex items-center justify-center text-white"
+                            whileTap={{ scale: 0.9 }}
+                            className="lg:hidden flex flex-col items-end gap-1.5 p-2 group"
                         >
-                            <Menu className="w-[18px] h-[18px]" />
+                            <span className="w-8 h-[2px] bg-white rounded-full transition-all group-hover:bg-[#ff4b2b]" />
+                            <span className="w-5 h-[2px] bg-white rounded-full transition-all group-hover:w-8 group-hover:bg-[#ff4b2b]" />
                         </motion.button>
                     </div>
                 </div>
