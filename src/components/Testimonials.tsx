@@ -29,7 +29,7 @@ const Testimonials = () => {
     }, []);
 
     return (
-        <section className="bg-[#0b0b0b] py-24 lg:py-48 px-10 lg:px-20 border-t border-white/5 overflow-hidden">
+        <section className="bg-[#0b0b0b] py-24 lg:py-48 px-6 sm:px-10 lg:px-20 border-t border-white/5 overflow-hidden">
             <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 40 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -44,7 +44,7 @@ const Testimonials = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 1, ease: "easeInOut" }}
-                        className="flex flex-col space-y-16"
+                        className="flex flex-col space-y-10 sm:space-y-16"
                     >
                         {/* Quote Text with Character/Word Reveal Logic */}
                         <div className="overflow-hidden">
@@ -52,7 +52,7 @@ const Testimonials = () => {
                                 initial={{ opacity: 0, y: 40 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                                className="text-white text-[3.8vw] lg:text-[2.6vw] font-[500] leading-[1.3] tracking-tight"
+                                className="text-white text-[6vw] sm:text-[3.8vw] lg:text-[2.6vw] font-[500] leading-[1.3] tracking-tight"
                             >
                                 "{testimonials[index].quote}"
                             </motion.h2>

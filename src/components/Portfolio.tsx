@@ -26,9 +26,9 @@ const projects = [
 
 const Portfolio = () => {
     return (
-        <section className="bg-[#0b0b0b] py-20 lg:py-40 px-6 lg:px-20">
+        <section className="bg-[#0b0b0b] py-20 lg:py-40 px-5 sm:px-10 lg:px-20">
             <div className="max-w-[1600px] mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24 lg:gap-y-32">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 sm:gap-y-24 lg:gap-y-32">
                     {projects.map((project, index) => (
                         <motion.div
                             key={index}
@@ -53,10 +53,10 @@ const Portfolio = () => {
                             </div>
 
                             <div className="flex flex-col space-y-3 max-w-[500px]">
-                                <h3 className="text-white text-[22px] lg:text-[28px] font-bold leading-[1.2] opacity-90 group-hover:opacity-100 transition-opacity">
+                                <h3 className="text-white text-[18px] sm:text-[22px] lg:text-[28px] font-bold leading-[1.2] opacity-90 group-hover:opacity-100 transition-opacity">
                                     {project.title}
                                 </h3>
-                                <p className="text-white/40 text-[14px] font-medium tracking-wide uppercase">
+                                <p className="text-white/40 text-[12px] sm:text-[14px] font-medium tracking-wide uppercase">
                                     {project.label}
                                 </p>
                             </div>

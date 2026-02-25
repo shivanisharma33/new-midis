@@ -72,9 +72,9 @@ const Hero = () => {
 
                 {/* ── Main Headline ── */}
                 <motion.div variants={item}>
-                    <h1 className="text-[13vw] sm:text-[11vw] lg:text-[8.5vw] font-[800] tracking-[-0.03em] leading-[0.88] text-white flex flex-wrap items-end gap-x-[0.25em] gap-y-0">
+                    <h1 className="text-[14vw] sm:text-[11vw] lg:text-[8.5vw] font-[800] tracking-[-0.03em] leading-[0.85] sm:leading-[0.88] text-white flex flex-wrap items-end gap-x-[0.25em] gap-y-0 max-w-full sm:max-w-7xl">
                         {/* Rotating word */}
-                        <span className="relative overflow-hidden inline-block h-[1.1em] align-bottom">
+                        <span className="relative overflow-hidden inline-block h-[1.1em] align-baseline sm:align-bottom">
                             {/* Ghost for width */}
                             <span className="invisible whitespace-nowrap">{words[index]}</span>
                             <AnimatePresence mode="wait">
@@ -101,8 +101,8 @@ const Hero = () => {
                     className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start sm:items-end gap-6 sm:gap-10 lg:gap-14"
                 >
                     {/* Video mockup card */}
-                    <div className="w-[140px] sm:w-[180px] lg:w-[220px] shrink-0 self-start sm:self-end">
-                        <div className="bg-[#f2f1ed] aspect-[4/3] rounded-sm p-1.5 shadow-2xl overflow-hidden">
+                    <div className="w-[120px] sm:w-[180px] lg:w-[220px] shrink-0 self-start sm:self-end">
+                        <div className="bg-[#f2f1ed] aspect-[4/3] rounded-sm p-1 sm:p-1.5 shadow-2xl overflow-hidden">
                             <div className="bg-black rounded-[2px] h-full w-full relative overflow-hidden">
                                 <video
                                     autoPlay
@@ -122,7 +122,7 @@ const Hero = () => {
                     <div className="flex flex-col gap-4 sm:gap-6">
                         {/* "Made Great" text */}
                         <div
-                            className="text-[#ff4b2b] text-[14vw] sm:text-[12vw] lg:text-[9vw] font-[900] leading-none tracking-[0.04em]"
+                            className="text-[#ff4b2b] text-[15vw] sm:text-[12vw] lg:text-[9vw] font-[900] leading-none tracking-[0.04em]"
                             style={{
                                 fontFamily: "'DotGothic16', sans-serif",
                                 transform: 'scaleY(0.9)'

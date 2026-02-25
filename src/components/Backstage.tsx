@@ -23,25 +23,25 @@ const articles = [
 
 const Backstage = () => {
     return (
-        <section className="bg-[#0b0b0b] py-32 px-10 lg:px-20 border-t border-white/5">
+        <section className="bg-[#0b0b0b] py-24 sm:py-32 px-6 sm:px-10 lg:px-20 border-t border-white/5">
             <div className="max-w-[1400px] mx-auto">
-                <div className="flex justify-between items-end mb-20">
+                <div className="flex justify-between items-end mb-12 sm:mb-20">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-white text-[14px] font-bold uppercase tracking-[0.2em] mb-4">
+                        <h2 className="text-[#ff4b2b] text-[10px] sm:text-[14px] font-bold uppercase tracking-[0.2em] mb-3 sm:mb-4">
                             Journal
                         </h2>
-                        <p className="text-white text-[48px] md:text-[64px] font-bold tracking-tighter leading-[1]">
+                        <p className="text-white text-[12vw] sm:text-[48px] md:text-[64px] font-bold tracking-tighter leading-[1]">
                             Backstage
                         </p>
                     </motion.div>
 
                     <motion.button
                         whileHover={{ scale: 1.05 }}
-                        className="text-white/40 text-[16px] font-bold uppercase tracking-widest hidden md:block hover:text-white transition-colors"
+                        className="text-white/40 text-[12px] sm:text-[16px] font-bold uppercase tracking-widest hidden sm:block hover:text-white transition-colors"
                     >
                         See all posts
                     </motion.button>

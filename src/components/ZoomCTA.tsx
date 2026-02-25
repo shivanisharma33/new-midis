@@ -20,17 +20,17 @@ const ZoomCTA = () => {
             <div className="sticky top-0 h-screen w-full flex items-center justify-center px-6">
                 <motion.div
                     style={{ scale, opacity }}
-                    className="flex flex-col items-center justify-center text-center"
+                    className="flex flex-col items-center justify-center text-center max-w-full sm:max-w-4xl"
                 >
-                    <h2 className="text-white text-[8vw] lg:text-[6.5vw] font-[900] leading-[1] tracking-[-0.04em] uppercase">
-                        Let's turn your ideas <br />
+                    <h2 className="text-white text-[11vw] sm:text-[8vw] lg:text-[6.5vw] font-[900] leading-[1.05] sm:leading-[1] tracking-[-0.04em] uppercase">
+                        Let's turn your ideas <br className="hidden sm:block" />
                         into working products.
                     </h2>
 
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-16 bg-[#ff4b2b] text-white px-10 py-5 rounded-full text-xl font-bold transition-shadow hover:shadow-[0_0_30px_rgba(255,75,43,0.4)]"
+                        className="mt-10 sm:mt-16 bg-[#ff4b2b] text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full text-lg sm:text-xl font-bold transition-shadow hover:shadow-[0_0_30px_rgba(255,75,43,0.4)]"
                     >
                         Start a project
                     </motion.button>

@@ -76,7 +76,7 @@ const BentoCard = ({ reason, index }: { reason: typeof reasons[0], index: number
         >
             <motion.div
                 style={{ rotateX, rotateY }}
-                className="relative h-full w-full p-10 rounded-[2.5rem] border border-white/5 backdrop-blur-3xl bg-neutral-900/40 overflow-hidden flex flex-col justify-between transition-colors duration-500 hover:border-[#ff4b2b]/30"
+                className="relative h-full w-full p-7 sm:p-9 lg:p-10 rounded-[2.5rem] border border-white/5 backdrop-blur-3xl bg-neutral-900/40 overflow-hidden flex flex-col justify-between transition-colors duration-500 hover:border-[#ff4b2b]/30"
             >
                 {/* Noise & Grain Texture */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
@@ -99,7 +99,7 @@ const BentoCard = ({ reason, index }: { reason: typeof reasons[0], index: number
                         </motion.div>
                     </div>
 
-                    <h3 className={`text-white font-[800] tracking-tight leading-tight mb-6 ${reason.size === 'large' ? 'text-4xl lg:text-5xl' : 'text-2xl'}`}>
+                    <h3 className={`text-white font-[800] tracking-tight leading-tight mb-6 ${reason.size === 'large' ? 'text-3xl sm:text-4xl lg:text-5xl' : 'text-xl sm:text-2xl'}`}>
                         {reason.title}
                     </h3>
                     <p className={`text-white/40 font-medium leading-relaxed group-hover:text-white/70 transition-colors ${reason.size === 'large' ? 'text-lg max-w-md' : 'text-sm'}`}>
@@ -131,7 +131,7 @@ const BentoCard = ({ reason, index }: { reason: typeof reasons[0], index: number
 
 const WhyChooseUs = () => {
     return (
-        <section className="bg-[#0a0a0a] pt-0 pb-32 lg:pb-30 px-10 lg:px-20 relative overflow-hidden">
+        <section className="bg-[#0a0a0a] pt-0 pb-32 lg:pb-30 px-6 sm:px-10 lg:px-20 relative overflow-hidden">
             {/* Architectural Background Lights */}
             <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-white/5 to-transparent" />
             <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-white/5 to-transparent" />
@@ -162,7 +162,7 @@ const WhyChooseUs = () => {
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ delay: 0.3 }}
-                            className="text-white/30 text-xl leading-relaxed border-l border-white/10 pl-8 font-medium italic"
+                            className="text-white/30 text-lg lg:text-xl leading-relaxed border-l border-white/10 pl-6 sm:pl-8 font-medium italic"
                         >
                             We don't settle for "good enough." We build the digital infrastructure that puts you years ahead of your competition.
                         </motion.p>
@@ -176,7 +176,7 @@ const WhyChooseUs = () => {
                 </div>
             </div>
 
-          
+
         </section>
     );
 };

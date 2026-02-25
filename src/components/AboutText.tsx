@@ -20,7 +20,7 @@ const AboutText = () => {
     return (
         <section
             ref={sectionRef}
-            className="bg-[#0a0a0a] pt-20 pb-32 lg:pb-72 px-10 lg:px-20 overflow-hidden relative"
+            className="bg-[#0a0a0a] pt-20 pb-32 lg:pb-72 px-6 sm:px-10 lg:px-20 overflow-hidden relative"
         >
             {/* Ambient Background Elements */}
             <motion.div
@@ -46,7 +46,7 @@ const AboutText = () => {
                     </div>
 
                     {/* Main Animated Text */}
-                    <h2 className="text-white text-[7vw] lg:text-[4.2vw] font-[600] leading-[1.05] tracking-[-0.03em] max-w-[1300px] flex flex-wrap gap-x-[0.2em] gap-y-[0.1em]">
+                    <h2 className="text-white text-[8vw] sm:text-[7vw] lg:text-[4.2vw] font-[600] leading-[1.05] tracking-[-0.03em] max-w-full lg:max-w-[1300px] flex flex-wrap gap-x-[0.2em] gap-y-[0.1em]">
                         {words.map((word, index) => {
                             const isHighlighted = highlights.some(h => word.toLowerCase().includes(h.toLowerCase()));
 
@@ -82,7 +82,7 @@ const AboutText = () => {
                         <motion.button
                             whileHover={{ scale: 1.05, backgroundColor: "#ff4b2b", color: "#fff" }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-10 py-5 rounded-full border border-[#ff4b2b]/20 text-white/80 font-bold uppercase tracking-widest text-xs transition-colors duration-500 backdrop-blur-sm bg-[#ff4b2b]/5"
+                            className="px-8 sm:px-10 py-4 sm:py-5 rounded-full border border-[#ff4b2b]/20 text-white/80 font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-colors duration-500 backdrop-blur-sm bg-[#ff4b2b]/5"
                         >
                             Our Philosophy
                         </motion.button>
