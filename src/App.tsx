@@ -7,6 +7,7 @@ import Portfolio from './components/Portfolio';
 import Testimonials from './components/Testimonials';
 import Backstage from './components/Backstage';
 import Services from './components/Services';
+import Blog from './components/Blog';
 
 import ZoomCTA from './components/ZoomCTA';
 import Footer from './components/Footer';
@@ -28,6 +29,7 @@ function App() {
           <Testimonials />
           <Backstage />
           <Services />
+          <Blog />
 
           <ZoomCTA />
           <Footer />
